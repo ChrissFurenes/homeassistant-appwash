@@ -21,7 +21,6 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_EMAIL): str,
         vol.Required(CONF_PASSWORD): str,
-        vol.Required(CONF_LOCATION): str,
     }
 )
 
@@ -42,7 +41,6 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
 
     email = data[CONF_EMAIL]
     password = data[CONF_PASSWORD]
-    location = data[CONF_LOCATION]
 
     if not await hass.async_add_executor_job(validate_credentials, email, password):
         raise InvalidAuth
@@ -52,7 +50,6 @@ async def validate_input(hass: HomeAssistant, data: dict[str, Any]) -> dict[str,
         "title": "AppWash",
         CONF_EMAIL: email,
         CONF_PASSWORD: password,
-        CONF_LOCATION: location,
     }
 
 

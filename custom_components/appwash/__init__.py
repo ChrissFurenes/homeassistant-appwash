@@ -4,7 +4,7 @@ from __future__ import annotations
 from appwashpy import AppWash
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.const import (CONF_EMAIL, CONF_LOCATION, CONF_PASSWORD,
+from homeassistant.const import (CONF_EMAIL, CONF_PASSWORD,
                                  Platform)
 from homeassistant.core import HomeAssistant
 
@@ -18,11 +18,10 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     email = entry.data[CONF_EMAIL]
     password = entry.data[CONF_PASSWORD]
-    location = entry.data[CONF_LOCATION]
 
     # hass.data[DOMAIN][entry.entry_id] = AppWash(email, password, location)
     hass.data.setdefault(DOMAIN, {})[entry.entry_id] = AppWash(
-        email, password, location
+        email, password
     )
 
     # hass.config_entries.async_setup_platforms(entry, PLATFORMS)
